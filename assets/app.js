@@ -24,30 +24,18 @@ $("#submit-btn").click(function () {
         Destination: trainDestination,
         Frequency: trainFrequency,
         FirstTrain: firstTrain,
-        //NextArrival: nextArrival,
-        //MinutesAway: minutesAway,
-
+       
         dateAdded: firebase.database.ServerValue.TIMESTAMP
 
     });
 });
 
-/*Formatting Time of Departure and Upcoming Arrival with an emphasis on minutes away
-var trainFrequency = $("#frequency").val().trim();
-var dateFormat = moment().format('LLLL');
-var frequencyConvert = moment(trainFrequency, dateFormat);
-var firstTrain = moment($("#first-train").val().trim(), "HH:mm").format(); //Need to have a 'set' time.
-var currentTime = moment();
-var nextArrival = moment()
-//var minutesAway = moment().endOf('').fromNow();*/
-
 database.ref().orderByChild("dateAdded").on("child_added", function (childSnapshot) {
     var trainFrequency = (childSnapshot.val().Frequency);
     var dateFormat = moment().format('LLLL');
-    //var frequencyConvert = moment(trainFrequency, dateFormat);
-    var firstTrain = moment($("#first-train").val().trim(), "HH:mm").format(); //Need to have a 'set' time.
+    
+    var firstTrain = moment($("#first-train").val().trim(), "HH:mm").format();
     var currentTime = moment();
-    //var currentDay = 
     var nextArrival = moment(childSnapshot.val().FirstTrain, "HH:mm");
     while (nextArrival.isBefore(currentTime)) {
         nextArrival.add(trainFrequency, "minutes");
@@ -61,10 +49,9 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
     trainName = $("<td>").html(childSnapshot.val().Train);
     trainDestination = $("<td>").html(childSnapshot.val().Destination);
     trainFrequency = $("<td>").html(childSnapshot.val().Frequency);
-    firstTrain = $("<td>").html(childSnapshot.val().FirstTrain); //this overrode Train Name, Destination, and Frequency
+    firstTrain = $("<td>").html(childSnapshot.val().FirstTrain); 
     nextArrivalTd = $("<td>").html(nextArrival.format('LT'));
-    //minutesAway = $("<td>").html(childSnapshot.val().MinutesAway);
-
-    tRow.append(trainName, trainDestination, trainFrequency, firstTrain, nextArrivalTd, minutesAwayTd); //nextArrival, minutesAway
+    
+    tRow.append(trainName, trainDestination, trainFrequency, firstTrain, nextArrivalTd, minutesAwayTd); 
     tBody.append(tRow);
 });
