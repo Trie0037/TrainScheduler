@@ -1,2 +1,2 @@
 # TrainScheduler
-Github link: https://github.com/Trie0037/TrainScheduler
+Github link: https://trie0037.github.io/TrainScheduler/
