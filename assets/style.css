@@ -1,0 +1,24 @@
+body {
+    background: rgb(214,50, 29);
+    position: absolute;
+    width: 100%;
+}
+
+.container {
+    background-color: rgb(76, 149, 252);
+    padding: 25px;
+}
+
+.jumbotron {
+    outline-style: dashed;
+    height: 100%;
+    font-size: 50px;
+    padding: 10px;
+    padding-bottom: 20px;
+    opacity: 0.9;
+}
+
+#submit-btn {
+    background-color: silver;
+    color: rgb(0, 0, 255);
+}
